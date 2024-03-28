@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ninth animation</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+        }
+        .forest{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .landscape{
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background-color: #fe3b05;
+            background-image: url("forest.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: day-to-night 5s linear 1s forwards;
+        }
+        .sun{
+            position: absolute;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(to left, #fe9f0a, #fd9e08);
+            box-shadow: 0 0 30px 10px #ff830d;
+            top: 2%; left: 5%;
+            animation: sunset 6s linear forwards;
+        }
+        .moon{
+            position: absolute;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom, #e9eaf9, #dbdcef);
+            box-shadow: 0 0 30px 10px #88879f;
+            rotate: z -45deg;
+            bottom: 2%; right: 5%;
+            opacity: 0;
+            overflow: hidden;
+            animation: moonrise 6s linear forwards;
+            
+        }
+        .moon::before{
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #010020;
+            position: absolute;
+            left: 25%;
+        }
+        @keyframes sunset{
+            0%{
+                transform: translateY(0);
+            }
+            100%{
+                transform: translateY(1000px);
+                opacity: 0;
+            }
+        }
+        @keyframes moonrise{
+            from{
+                transform: translateY(0);
+            }
+            to{
+                transform: translateY(-1000px);
+                right: -30%;
+                opacity: 1;
+            }
+        }
+        @keyframes day-to-night{
+            0%{
+                background-color: #fe3b05;
+            }
+            100%{
+                background-color: #010020;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="forest">
+        <div class="sun"></div>
+        <div class="moon"></div>
+        <div class="landscape"></div>
+    </div>
+</body>
+</html>
